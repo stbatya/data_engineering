@@ -1,0 +1,78 @@
+[2022-05-30 10:29:37,002] {taskinstance.py:903} INFO - Dependencies all met for <TaskInstance: my_spark_dag.process_songs 2022-05-30T10:29:34.840794+00:00 [queued]>
+[2022-05-30 10:29:37,010] {taskinstance.py:903} INFO - Dependencies all met for <TaskInstance: my_spark_dag.process_songs 2022-05-30T10:29:34.840794+00:00 [queued]>
+[2022-05-30 10:29:37,010] {taskinstance.py:1095} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-30 10:29:37,010] {taskinstance.py:1096} INFO - Starting attempt 1 of 4
+[2022-05-30 10:29:37,010] {taskinstance.py:1097} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-30 10:29:37,016] {taskinstance.py:1115} INFO - Executing <Task(PythonOperator): process_songs> on 2022-05-30T10:29:34.840794+00:00
+[2022-05-30 10:29:37,018] {standard_task_runner.py:52} INFO - Started process 28106 to run task
+[2022-05-30 10:29:37,021] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'my_spark_dag', 'process_songs', '2022-05-30T10:29:34.840794+00:00', '--job-id', '9', '--pool', 'default_pool', '--raw', '--subdir', 'DAGS_FOLDER/spark_dag.py', '--cfg-path', '/tmp/tmppoyus1mx', '--error-file', '/tmp/tmpgqdu2q2v']
+[2022-05-30 10:29:37,022] {standard_task_runner.py:77} INFO - Job 9: Subtask process_songs
+[2022-05-30 10:29:37,050] {logging_mixin.py:109} INFO - Running <TaskInstance: my_spark_dag.process_songs 2022-05-30T10:29:34.840794+00:00 [running]> on host 1367f8687ad2
+[2022-05-30 10:29:37,080] {taskinstance.py:1254} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=kirill
+AIRFLOW_CTX_DAG_ID=my_spark_dag
+AIRFLOW_CTX_TASK_ID=process_songs
+AIRFLOW_CTX_EXECUTION_DATE=2022-05-30T10:29:34.840794+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-05-30T10:29:34.840794+00:00
+[2022-05-30 10:29:37,081] {spark_funcs.py:31} INFO - debug0
+[2022-05-30 10:29:45,359] {logging_mixin.py:109} WARNING - /home/***/.local/lib/python3.6/site-packages/pyspark/context.py:238 FutureWarning: Python 3.6 support is deprecated in Spark 3.2.
+[2022-05-30 10:29:46,922] {spark_funcs.py:33} INFO - debug1
+[2022-05-30 10:32:58,798] {local_task_job.py:209} WARNING - State of this instance has been externally set to shutdown. Terminating instance.
+[2022-05-30 10:32:58,801] {process_utils.py:100} INFO - Sending Signals.SIGTERM to GPID 28106
+[2022-05-30 10:32:58,801] {taskinstance.py:1236} ERROR - Received SIGTERM. Terminating subprocesses.
+[2022-05-30 10:32:58,803] {clientserver.py:502} INFO - Error while receiving.
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/py4j/clientserver.py", line 475, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/local/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1238, in signal_handler
+    raise AirflowException("Task received SIGTERM signal")
+airflow.exceptions.AirflowException: Task received SIGTERM signal
+[2022-05-30 10:32:58,804] {clientserver.py:507} INFO - Closing down clientserver connection
+[2022-05-30 10:32:58,804] {java_gateway.py:1056} ERROR - Exception while sending command.
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/py4j/clientserver.py", line 475, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+  File "/usr/local/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1238, in signal_handler
+    raise AirflowException("Task received SIGTERM signal")
+airflow.exceptions.AirflowException: Task received SIGTERM signal
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+  File "/home/airflow/.local/lib/python3.6/site-packages/py4j/clientserver.py", line 504, in send_command
+    "Error while sending or receiving", e, proto.ERROR_ON_RECEIVE)
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+[2022-05-30 10:32:58,805] {taskinstance.py:1463} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1165, in _run_raw_task
+    self._prepare_and_execute_task_with_callbacks(context, task)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1283, in _prepare_and_execute_task_with_callbacks
+    result = self._execute_task(context, task_copy)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/models/taskinstance.py", line 1313, in _execute_task
+    result = task_copy.execute(context=context)
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python.py", line 150, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.6/site-packages/airflow/operators/python.py", line 161, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/spark_funcs.py", line 36, in process_song_data
+    df = spark.read.json(song_data)
+  File "/home/airflow/.local/lib/python3.6/site-packages/pyspark/sql/readwriter.py", line 229, in json
+    return self._df(self._jreader.json(self._spark._sc._jvm.PythonUtils.toSeq(path)))
+  File "/home/airflow/.local/lib/python3.6/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    answer, self.gateway_client, self.target_id, self.name)
+  File "/home/airflow/.local/lib/python3.6/site-packages/pyspark/sql/utils.py", line 111, in deco
+    return f(*a, **kw)
+  File "/home/airflow/.local/lib/python3.6/site-packages/py4j/protocol.py", line 336, in get_return_value
+    format(target_id, ".", name))
+py4j.protocol.Py4JError: An error occurred while calling o37.json
+[2022-05-30 10:32:58,806] {taskinstance.py:1513} INFO - Marking task as UP_FOR_RETRY. dag_id=my_spark_dag, task_id=process_songs, execution_date=20220530T102934, start_date=20220530T102937, end_date=20220530T103258
+[2022-05-30 10:32:59,312] {process_utils.py:66} INFO - Process psutil.Process(pid=28106, status='terminated', exitcode=1, started='10:29:36') (28106) terminated with exit code 1
+[2022-05-30 10:32:59,367] {process_utils.py:66} INFO - Process psutil.Process(pid=28107, status='terminated', started='10:29:36') (28107) terminated with exit code None

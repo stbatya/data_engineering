@@ -1,0 +1,43 @@
+[2022-05-31 09:45:47,441] {taskinstance.py:1043} INFO - Dependencies all met for <TaskInstance: my_spark_dag.process_logs manual__2022-05-31T09:29:50.716383+00:00 [queued]>
+[2022-05-31 09:45:47,446] {taskinstance.py:1043} INFO - Dependencies all met for <TaskInstance: my_spark_dag.process_logs manual__2022-05-31T09:29:50.716383+00:00 [queued]>
+[2022-05-31 09:45:47,446] {taskinstance.py:1249} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-31 09:45:47,446] {taskinstance.py:1250} INFO - Starting attempt 3 of 4
+[2022-05-31 09:45:47,446] {taskinstance.py:1251} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-31 09:45:47,452] {taskinstance.py:1270} INFO - Executing <Task(PythonOperator): process_logs> on 2022-05-31 09:29:50.716383+00:00
+[2022-05-31 09:45:47,455] {standard_task_runner.py:52} INFO - Started process 9533 to run task
+[2022-05-31 09:45:47,457] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'my_spark_dag', 'process_logs', 'manual__2022-05-31T09:29:50.716383+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/spark_dag.py', '--cfg-path', '/tmp/tmpwmx53pjg', '--error-file', '/tmp/tmp74uoobad']
+[2022-05-31 09:45:47,457] {standard_task_runner.py:80} INFO - Job 5: Subtask process_logs
+[2022-05-31 09:45:47,488] {logging_mixin.py:109} INFO - Running <TaskInstance: my_spark_dag.process_logs manual__2022-05-31T09:29:50.716383+00:00 [running]> on host 9f4007c80274
+[2022-05-31 09:45:47,515] {taskinstance.py:1446} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=kirill
+AIRFLOW_CTX_DAG_ID=my_spark_dag
+AIRFLOW_CTX_TASK_ID=process_logs
+AIRFLOW_CTX_EXECUTION_DATE=2022-05-31T09:29:50.716383+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-05-31T09:29:50.716383+00:00
+[2022-05-31 09:46:27,580] {taskinstance.py:1774} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 174, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 188, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/spark_funcs.py", line 94, in process_log_data
+    song_df = spark.sql("SELECT * FROM song_data_view")
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/sql/session.py", line 723, in sql
+    return DataFrame(self._jsparkSession.sql(sqlQuery), self._wrapped)
+  File "/home/airflow/.local/lib/python3.9/site-packages/py4j/java_gateway.py", line 1321, in __call__
+    return_value = get_return_value(
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/sql/utils.py", line 117, in deco
+    raise converted from None
+pyspark.sql.utils.AnalysisException: Table or view not found: song_data_view; line 1 pos 14;
+'Project [*]
++- 'UnresolvedRelation [song_data_view], [], false
+
+[2022-05-31 09:46:27,592] {taskinstance.py:1278} INFO - Marking task as UP_FOR_RETRY. dag_id=my_spark_dag, task_id=process_logs, execution_date=20220531T092950, start_date=20220531T094547, end_date=20220531T094627
+[2022-05-31 09:46:27,601] {standard_task_runner.py:93} ERROR - Failed to execute job 5 for task process_logs (Table or view not found: song_data_view; line 1 pos 14;
+'Project [*]
++- 'UnresolvedRelation [song_data_view], [], false
+; 9533)
+[2022-05-31 09:46:27,641] {local_task_job.py:154} INFO - Task exited with return code 1
+[2022-05-31 09:46:27,677] {local_task_job.py:264} INFO - 0 downstream tasks scheduled from follow-on schedule check

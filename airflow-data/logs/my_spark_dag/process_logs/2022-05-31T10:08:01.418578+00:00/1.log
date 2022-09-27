@@ -1,0 +1,33 @@
+[2022-05-31 10:10:05,473] {taskinstance.py:1043} INFO - Dependencies all met for <TaskInstance: my_spark_dag.process_logs manual__2022-05-31T10:08:01.418578+00:00 [queued]>
+[2022-05-31 10:10:05,478] {taskinstance.py:1043} INFO - Dependencies all met for <TaskInstance: my_spark_dag.process_logs manual__2022-05-31T10:08:01.418578+00:00 [queued]>
+[2022-05-31 10:10:05,478] {taskinstance.py:1249} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-31 10:10:05,478] {taskinstance.py:1250} INFO - Starting attempt 1 of 4
+[2022-05-31 10:10:05,478] {taskinstance.py:1251} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-31 10:10:05,485] {taskinstance.py:1270} INFO - Executing <Task(PythonOperator): process_logs> on 2022-05-31 10:08:01.418578+00:00
+[2022-05-31 10:10:05,489] {standard_task_runner.py:52} INFO - Started process 50094 to run task
+[2022-05-31 10:10:05,491] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'my_spark_dag', 'process_logs', 'manual__2022-05-31T10:08:01.418578+00:00', '--job-id', '11', '--raw', '--subdir', 'DAGS_FOLDER/spark_dag.py', '--cfg-path', '/tmp/tmpxs8uq0f5', '--error-file', '/tmp/tmppvzhubgk']
+[2022-05-31 10:10:05,491] {standard_task_runner.py:80} INFO - Job 11: Subtask process_logs
+[2022-05-31 10:10:05,521] {logging_mixin.py:109} INFO - Running <TaskInstance: my_spark_dag.process_logs manual__2022-05-31T10:08:01.418578+00:00 [running]> on host 9f4007c80274
+[2022-05-31 10:10:05,548] {taskinstance.py:1446} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=kirill
+AIRFLOW_CTX_DAG_ID=my_spark_dag
+AIRFLOW_CTX_TASK_ID=process_logs
+AIRFLOW_CTX_EXECUTION_DATE=2022-05-31T10:08:01.418578+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-05-31T10:08:01.418578+00:00
+[2022-05-31 10:10:56,964] {spark_funcs.py:98} INFO - debug2
+[2022-05-31 10:10:56,968] {taskinstance.py:1774} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 174, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 188, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/spark_funcs.py", line 100, in process_log_data
+    songplays_table = df.join(song_df, (df.song == song_df.title)\
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/sql/dataframe.py", line 1659, in __getattr__
+    raise AttributeError(
+AttributeError: 'DataFrame' object has no attribute 'song'
+[2022-05-31 10:10:56,979] {taskinstance.py:1278} INFO - Marking task as UP_FOR_RETRY. dag_id=my_spark_dag, task_id=process_logs, execution_date=20220531T100801, start_date=20220531T101005, end_date=20220531T101056
+[2022-05-31 10:10:56,987] {standard_task_runner.py:93} ERROR - Failed to execute job 11 for task process_logs ('DataFrame' object has no attribute 'song'; 50094)
+[2022-05-31 10:10:57,019] {local_task_job.py:154} INFO - Task exited with return code 1

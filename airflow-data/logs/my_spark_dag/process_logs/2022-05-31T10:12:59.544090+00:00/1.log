@@ -1,0 +1,22 @@
+[2022-05-31 10:15:05,569] {taskinstance.py:1043} INFO - Dependencies all met for <TaskInstance: my_spark_dag.process_logs manual__2022-05-31T10:12:59.544090+00:00 [queued]>
+[2022-05-31 10:15:05,575] {taskinstance.py:1043} INFO - Dependencies all met for <TaskInstance: my_spark_dag.process_logs manual__2022-05-31T10:12:59.544090+00:00 [queued]>
+[2022-05-31 10:15:05,576] {taskinstance.py:1249} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-31 10:15:05,576] {taskinstance.py:1250} INFO - Starting attempt 1 of 4
+[2022-05-31 10:15:05,576] {taskinstance.py:1251} INFO - 
+--------------------------------------------------------------------------------
+[2022-05-31 10:15:05,583] {taskinstance.py:1270} INFO - Executing <Task(PythonOperator): process_logs> on 2022-05-31 10:12:59.544090+00:00
+[2022-05-31 10:15:05,588] {standard_task_runner.py:52} INFO - Started process 59950 to run task
+[2022-05-31 10:15:05,590] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'my_spark_dag', 'process_logs', 'manual__2022-05-31T10:12:59.544090+00:00', '--job-id', '13', '--raw', '--subdir', 'DAGS_FOLDER/spark_dag.py', '--cfg-path', '/tmp/tmpgpayenvp', '--error-file', '/tmp/tmp_3nr5myl']
+[2022-05-31 10:15:05,591] {standard_task_runner.py:80} INFO - Job 13: Subtask process_logs
+[2022-05-31 10:15:05,647] {logging_mixin.py:109} INFO - Running <TaskInstance: my_spark_dag.process_logs manual__2022-05-31T10:12:59.544090+00:00 [running]> on host 9f4007c80274
+[2022-05-31 10:15:05,681] {taskinstance.py:1446} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=kirill
+AIRFLOW_CTX_DAG_ID=my_spark_dag
+AIRFLOW_CTX_TASK_ID=process_logs
+AIRFLOW_CTX_EXECUTION_DATE=2022-05-31T10:12:59.544090+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-05-31T10:12:59.544090+00:00
+[2022-05-31 10:15:54,660] {spark_funcs.py:98} INFO - debug2
+[2022-05-31 10:16:08,630] {python.py:175} INFO - Done. Returned value was: None
+[2022-05-31 10:16:08,638] {taskinstance.py:1278} INFO - Marking task as SUCCESS. dag_id=my_spark_dag, task_id=process_logs, execution_date=20220531T101259, start_date=20220531T101505, end_date=20220531T101608
+[2022-05-31 10:16:08,689] {local_task_job.py:154} INFO - Task exited with return code 0
